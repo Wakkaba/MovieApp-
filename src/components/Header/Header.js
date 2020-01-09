@@ -17,7 +17,7 @@ class Navigation extends Component {
                 </tr>
                 </tbody>
             </table>
-                <input className="movieSearch" placeholder="Enter your movie"/>
+                {/*<input className="movieSearch" placeholder="Enter your movie"/>*/}
             </div>
 
         )

@@ -3,7 +3,7 @@ import { Typography } from 'antd';
 
 const { Title } = Typography;
 
-function MainImage(props) {
+export default function MainImage(props) {
     return (
         <div
             style={{
@@ -13,7 +13,7 @@ function MainImage(props) {
             41%,rgba(0,0,0,0.65)
             100%),
             url('${props.image}'), #1c1c1c`,
-                height: '400px',
+                height: '500px',
                 backgroundSize: '100%, cover',
                 backgroundPosition: 'center, center',
                 width: '100%',
@@ -30,4 +30,3 @@ function MainImage(props) {
     )
 }
 
-export default MainImage

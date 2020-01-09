@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{Component, Suspense} from 'react';
+import { BrowserRouter as Router,Switch, Route} from 'react-router-dom'
 import Navigation from './components/Header/Header'
 import MovieResults from './components/MoviesList/MoviesListPage'
-
+import MoviesInfoPage from "./components/MoviesInfoPage/MoviesInfoPage";
 // class ApiAdapter {
 //     constructor() {
 //         this.baseMoviesUrl = 'https://api.themoviedb.org'
@@ -15,19 +16,25 @@ import MovieResults from './components/MoviesList/MoviesListPage'
 //         })
 //     }
 // }
-
 // export const test = new ApiAdapter();
 
-class App extends React.Component {
+class App extends Component {
     // componentDidMount() {
     //     test.getMovies('3/discover/movie?page=1').then(res => res.json()).then(console.log)
     // }
     render() {
         return (
-            <div>
-                <Navigation/>
-                <MovieResults/>
-            </div>
+            <Suspense fallback={(<div>Loading...</div>)}>
+                <Navigation />
+                <div style={{  backgroundColor: '#0074D9',  minHeight: 'calc(100vh - 80px)' }}>
+                    <Router>
+                        <Switch>
+                            <Route exact path="/" component={MovieResults} />
+                            {/*<Route exact path="/movie/:movieId" component={MoviesInfoPage} />*/}
+                        </Switch>
+                    </Router>
+                </div>
+            </Suspense>
         );
     }
 

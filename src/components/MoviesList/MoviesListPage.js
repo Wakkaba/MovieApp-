@@ -1,42 +1,52 @@
 import React, {useEffect, useState} from 'react'
-import {API_URL, API_KEY, IMAGE_URL} from '../../config'
+import {API_URL, API_KEY, IMAGE_URL,IMAGE_SIZE,POSTER_SIZE} from '../../config'
 import MainImage from './MainImage'
 import { Typography, Row, Button } from 'antd';
-// import GridCard from '../GridCard/GridCard'
+import GridPoster from '../GridPoster/GridPoster'
 
 
 
 const { Title } = Typography;
 
-function MovieResults() {
+function MovieListPage() {
 
     const [Movies, setMovies] = useState([]);
 
      useEffect(() => {
          fetch(`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
              .then(response => response.json())
-             .then(response => {
-                 console.log(response);
-                 setMovies(response.result)
+             .then(result => {
+
+                 setMovies([...Movies, ...result.results])
              })
      }, [] );
 
 return (
     <div style={{width:'100%', margin: 0}}>
         {/*Movie Image Main*/}
-        <MainImage/>
+        {Movies[0] && <MainImage
+            image={`${IMAGE_URL}${IMAGE_SIZE}${Movies[0].backdrop_path}`}
+            title={Movies[0].original_title}
+            text={Movies[0].overview}
+        />}
+
 
 
 
         {/*Body*/}
-        <div style={{width:'85%', margin:'1rem auto'}}>
+        <div style={{width:'85%', margin:'1rem auto', color:'white'}}>
             <Title level={2}> Trending Movies</Title>
-            <hr/>
-            {/*Movie Info*/}
+            <hr />
+
+            {/*Movie Columns*/}
+
             <Row gutter={[16, 16]}>
                 {Movies && Movies.map((movie, index) => (
                     <React.Fragment key={index}>
-
+                        <GridPoster
+                            image={movie.poster_path && `${IMAGE_URL}${POSTER_SIZE}${movie.poster_path}`}
+                            movieId={movie.id}
+                        />
                     </React.Fragment>
                 ))}
             </Row>
@@ -49,4 +59,4 @@ return (
     </div>
 );
 }
-export default MovieResults;
+export default MovieListPage;
