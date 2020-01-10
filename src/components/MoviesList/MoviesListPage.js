@@ -11,15 +11,29 @@ const { Title } = Typography;
 function MovieListPage() {
 
     const [Movies, setMovies] = useState([]);
+    const [CurrentPage, setCurrentPage] = useState(0);
 
      useEffect(() => {
-         fetch(`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
-             .then(response => response.json())
-             .then(result => {
-
-                 setMovies([...Movies, ...result.results])
-             })
+        const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+         fetchMovies(endpoint)
      }, [] );
+
+     const fetchMovies = (endpoint) => {
+         fetch(endpoint)
+             .then(result => result.json())
+             .then(result => {
+                 console.log(result);
+                 setMovies([...Movies, ...result.results])
+                 setCurrentPage(result.page)
+             })
+
+     };
+
+     const LoadMoreClick = () => {
+         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
+
+         fetchMovies(endpoint)
+     };
 
 return (
     <div style={{width:'100%', margin: 0}}>
@@ -40,11 +54,11 @@ return (
 
             {/*Movie Columns*/}
 
-            <Row gutter={[16, 16]}>
+            <Row  gutter={[16, 16]}>
                 {Movies && Movies.map((movie, index) => (
                     <React.Fragment key={index}>
                         <GridPoster
-                            image={movie.poster_path && `${IMAGE_URL}${POSTER_SIZE}${movie.poster_path}`}
+                            image={movie.poster_path ? `${IMAGE_URL}${POSTER_SIZE}${movie.poster_path}` : null}
                             movieId={movie.id}
                         />
                     </React.Fragment>
@@ -53,7 +67,7 @@ return (
             {/*Button More Movies*/}
             <br />
             <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <button onClick>More Movies</button>
+                <Button onClick={LoadMoreClick}>More Movies</Button>
             </div>
         </div>
     </div>
