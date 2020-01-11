@@ -8,7 +8,7 @@ import GridPoster from '../GridPoster/GridPoster'
 
 const { Title } = Typography;
 
-function MovieListPage() {
+export default function MovieListPage() {
 
     const [Movies, setMovies] = useState([]);
     const [CurrentPage, setCurrentPage] = useState(0);
@@ -44,17 +44,13 @@ return (
             text={Movies[0].overview}
         />}
 
-
-
-
         {/*Body*/}
-        <div style={{width:'85%', margin:'1rem auto', color:'white'}}>
+        <div style={{width:'100%', margin:'1rem auto', color:'white'}}>
             <Title level={2}> Trending Movies</Title>
             <hr />
 
             {/*Movie Columns*/}
-
-            <Row  gutter={[16, 16]}>
+            <Row gutter={[16, 16]} >
                 {Movies && Movies.map((movie, index) => (
                     <React.Fragment key={index}>
                         <GridPoster
@@ -73,4 +69,3 @@ return (
     </div>
 );
 }
-export default MovieListPage;

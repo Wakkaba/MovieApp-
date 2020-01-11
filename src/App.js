@@ -1,8 +1,8 @@
 import React,{Component, Suspense} from 'react';
 import { BrowserRouter as Router,Switch, Route} from 'react-router-dom'
 import Navigation from './components/Header/Header'
-import MovieResults from './components/MoviesList/MoviesListPage'
-import MoviesInfoPage from "./components/MoviesInfoPage/MoviesInfoPage";
+import MovieListPage from './components/MoviesList/MoviesListPage'
+import MovieDetailPage from './components/MoviesInfoPage/MoviesInfoPage';
 // class ApiAdapter {
 //     constructor() {
 //         this.baseMoviesUrl = 'https://api.themoviedb.org'
@@ -29,8 +29,8 @@ class App extends Component {
                 <div style={{  backgroundColor: '#0074D9',  minHeight: 'calc(100vh - 80px)' }}>
                     <Router>
                         <Switch>
-                            <Route exact path="/" component={MovieResults} />
-                            {/*<Route exact path="/movie/:movieId" component={MoviesInfoPage} />*/}
+                            <Route exact path="/" component={MovieListPage} />
+                            <Route exact path="/movie/:movieId" component={MovieDetailPage} />
                         </Switch>
                     </Router>
                 </div>
