@@ -26,7 +26,7 @@ class App extends Component {
         return (
             <Suspense fallback={(<div>Loading...</div>)}>
                 <Navigation />
-                <div style={{  backgroundColor: '#0074D9',  minHeight: 'calc(100vh - 80px)' }}>
+                <div style={{  backgroundColor: '#0074D9',  minHeight: 'calc(100vh - 80px)', paddingBottom: '10px' }}>
                     <Router>
                         <Switch>
                             <Route exact path="/" component={MovieListPage}>
