@@ -1,5 +1,5 @@
 import React,{Component, Suspense} from 'react';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import { BrowserRouter as Router,Switch, Route} from 'react-router-dom'
 import Navigation from './components/Header/Header'
 import MovieListPage from './components/MoviesList/MoviesListPage'
 import MovieDetailPage from './components/MoviesInfoPage/MoviesInfoPage';
@@ -25,13 +25,13 @@ class App extends Component {
     render() {
         return (
             <Suspense fallback={(<div>Loading...</div>)}>
-                <Navigation >
-                    <Link to="/">Home</Link>
-                </Navigation>
+                <Navigation />
                 <div style={{  backgroundColor: '#0074D9',  minHeight: 'calc(100vh - 80px)' }}>
                     <Router>
                         <Switch>
-                            <Route exact path="/" component={MovieListPage} />
+                            <Route exact path="/" component={MovieListPage}>
+
+                            </Route>
                             <Route exact path="/movie/:movieId" component={MovieDetailPage} />
                         </Switch>
                     </Router>

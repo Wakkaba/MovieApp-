@@ -1,7 +1,8 @@
 import React,{Component} from 'react'
 import './Header.css'
+import { Typography } from 'antd';
 // import { BrowserRouter as Link} from 'react-router-dom'
-
+const { Title } = Typography;
 
 class Navigation extends Component {
     render() {
@@ -14,9 +15,9 @@ class Navigation extends Component {
                         {/*<img alt="logo" width="50" src="cinema.svg"/>*/}
                     </td>
                     <td>
-
-                        <h1 style={{color: '#52F4EF'}}> Movie App </h1>
-
+                        <Title level={3}>
+                            <a href="/" style={{color: '#52F4EF'}}> Movie App </a>
+                        </Title>
                     </td>
                 </tr>
                 </tbody>
