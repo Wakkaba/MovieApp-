@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {API_URL, API_KEY, IMAGE_URL,IMAGE_SIZE} from '../../config'
-import MainImage from '../MoviesList/MoviesListPage';
+import MainImage from '../MoviesList/MainImage'
 import MovieInfo from '../MoviesInfoPage/MoviesInfoCard'
 
 

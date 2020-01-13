@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 import './Header.css'
+// import { BrowserRouter as Link} from 'react-router-dom'
+
 
 class Navigation extends Component {
     render() {
@@ -12,7 +14,9 @@ class Navigation extends Component {
                         {/*<img alt="logo" width="50" src="cinema.svg"/>*/}
                     </td>
                     <td>
-                        <h1> Movie App </h1>
+
+                        <h1 style={{color: '#52F4EF'}}> Movie App </h1>
+
                     </td>
                 </tr>
                 </tbody>
